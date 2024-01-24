@@ -1,0 +1,172 @@
+<!doctype html>
+
+<!-- <html lang="en"> -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SITE TITLE -->
+    <title>Sitee</title>
+
+    <!-- FAVICON AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="icon" href="images/apple-touch-icon.png" type="image/x-icon">
+    <!--tailwind-->
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!-- BOOTSTRAP CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FONT ICONS -->
+    <link href="css/flaticon.css" rel="stylesheet">
+
+    <link href="styles.css" rel="stylesheet">
+
+
+</head>
+
+
+
+
+<body id="body">
+
+
+
+    <!-- <h2>Weekly Coding Challenge #1: Sign in/up Form</h2> -->
+    <div class="container" id="container">
+        <div id="signUpPage" class="form-container sign-up-container">
+            <form action="#">
+                <h1>Log In</h1>
+                <div class="social-container">
+
+                    <a href="#" class="social"><i class="fa-brands fa-google"></i></i></a>
+                </div>
+                <span>Login with Google</span>
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Password" />
+
+                <a href="#">Forgot your password?</a>
+                <button>Log In</button>
+                <p id="signUpPage" onclick="signUp();" style="cursor:pointer;color: rgb(26, 213, 1); font-weight: 500;">
+                    Create your accout FREE !!</p>
+            </form>
+        </div>
+        <div id="logIn" class="form-container sign-in-container">
+            <form action="#">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <input type="text" placeholder="Name" />
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <button>Sign Up</button>
+                <a id="logInPage" href="./index.html">
+                    <c style="cursor:pointer;color: rgb(26, 213, 1); font-weight: 500;">Already have an account? <c
+                            style="color: blueviolet;">Login</c>
+                    </c>
+                </a>
+
+            </form>
+
+        </div>
+        <div id="extraPage" class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>sitee</h1>
+                    <p> Unleash the Power of Swift .</p>
+                    <b>Don't have an account? </b>
+                    <br>
+                    <button class="ghost" id="signIn">Sign Up</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Create your account FREE !!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+
+                    <button class="ghost" id="signUp">Log In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var a = 0;
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        const logIn = document.getElementById("logIn");
+        const signUpPage = document.getElementById("signUpPage");
+        const extraPage = document.getElementById("extraPage");
+        const logInW = logIn.clientWidth;
+        const bodyWidth = body.offsetWidth;
+
+        signUpButton.addEventListener('click', () => {
+            a++;
+            container.classList.add("right-panel-active");
+
+        });
+
+        signInButton.addEventListener('click', () => {
+            a++;
+            container.classList.remove("right-panel-active");
+        });
+        function signUp() {
+            container.classList.add("right-panel-active");
+            logIn.style.display = "none";
+        }
+
+        if (bodyWidth <= 600) {
+            extraPage.style.display = "none";
+            logIn.style.width = "70%";
+            logIn.style.marginLeft = "15%";
+            signUpPage.style.width = "70%";
+            signUpPage.style.marginRight = "15%";
+        }
+        let previousWidth = window.innerWidth;
+        function checkDisplayWidth() {
+            const currentWidth = window.innerWidth;
+            if (currentWidth !== previousWidth) {
+                if (currentWidth <= 756) {
+                    if (a % 2 != 0) {
+                        document.getElementById("logInPage").click();
+                    }
+                    else {
+                        extraPage.style.display = "none";
+                        logIn.style.width = "70%";
+                        logIn.style.marginLeft = "15%";
+                        signUpPage.style.width = "70%";
+                        signUpPage.style.marginRight = "15%";
+                    }
+                }
+                else if (currentWidth > 756) {
+                    extraPage.style.display = "block";
+                    logIn.style.width = "50%";
+                    logIn.style.marginLeft = "0";
+                    signUpPage.style.width = "50%";
+                    signUpPage.style.marginRight = "0%";
+                }
+
+
+
+            }
+            previousWidth = currentWidth;
+        }
+        window.addEventListener('resize', checkDisplayWidth);
+    </script>
+</body>
